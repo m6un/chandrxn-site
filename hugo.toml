@@ -1,0 +1,13 @@
+baseURL = 'https://chandrxn.me/'
+languageCode = 'en-us'
+title = 'Midhun Chandran'
+theme = 'ritzy'
+
+[params]
+  author = "Midhun Chandran"
+  description = "Writer, Developer, Creator"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
