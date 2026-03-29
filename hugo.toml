@@ -5,7 +5,7 @@ theme = 'ritzy'
 
 [params]
   author = "Midhun Chandran"
-  description = "Writer, Developer, Creator"
+  description = "Writer, Developer, Builder"
 
 [markup]
   [markup.goldmark]
