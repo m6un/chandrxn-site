@@ -29,6 +29,11 @@
         padding: 60px 20px;
       }
 
+      .container--wide {
+        max-width: 1200px;
+        padding: 60px 24px;
+      }
+
       h1 {
         font-family: 'JetBrains Mono', monospace;
         font-size: 24px;
@@ -214,7 +219,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container{{ if .Params.wideLayout }} container--wide{{ end }}">
       {{ block "main" . }}{{ end }}
     </div>
     {{ partial "math.html" . }}

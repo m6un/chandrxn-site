@@ -1,5 +1,29 @@
 {{ define "main" }}
 <style>
+  .site-nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0 0 34px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 13px;
+  }
+
+  .site-brand {
+    color: #4a4b4f;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .site-brand:hover { color: #8f6a60; }
+  .site-nav__link {
+    margin-left: auto;
+    float: right;
+    color: #8f6a60;
+  }
+
   .page-container {
     display: flex;
     flex-direction: column;
@@ -32,6 +56,10 @@
 </style>
 
 <div class="page-container">
+  <nav class="site-nav" aria-label="Site navigation">
+    <a class="site-brand" href="{{ "/" | relURL }}">Midhun Chandran</a>
+    <a class="site-nav__link" href="{{ "/garden/" | relURL }}">Garden 🪴 →</a>
+  </nav>
   <div class="content-column">
     <div class="section">
       {{ with .Site.GetPage "_about" }}

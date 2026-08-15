@@ -1,0 +1,263 @@
+{{ define "main" }}
+<style>
+  .art-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 8px 56px;
+  }
+
+  .art-page__nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0 12px 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 13px;
+  }
+
+  .art-page__home {
+    color: #4a4b4f;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .art-page__home:hover { color: #8f6a60; }
+
+  .art-page__section-label {
+    margin-left: auto;
+    float: right;
+    color: #8f6a60;
+  }
+
+  .art-page__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 0 0 32px;
+    padding: 0 12px;
+  }
+
+  .art-page h1 {
+    margin: 0;
+    font-size: clamp(24px, 3vw, 34px);
+    letter-spacing: -0.06em;
+  }
+
+  .art-page__line {
+    margin: 0 12px 30px;
+    color: #625d5a;
+    font-size: 14px;
+  }
+
+  .art-wall {
+    display: block;
+    width: 100%;
+  }
+
+  .art-wall::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  .art-column {
+    display: block;
+    float: left;
+    margin-right: 2.1%;
+    width: 31.9%;
+  }
+
+  .art-column:last-child {
+    margin-right: 0;
+  }
+
+  .art-card {
+    break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 18px;
+    background: #fff;
+    border: 1px solid #ece8e4;
+    box-shadow: 0 3px 14px rgba(53, 42, 35, 0.08);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .art-card:hover {
+    transform: translateY(-3px) rotate(0.15deg);
+    box-shadow: 0 8px 22px rgba(53, 42, 35, 0.13);
+  }
+
+  .art-card--link,
+  .art-card--note {
+    box-sizing: border-box;
+    min-height: 160px;
+    padding: 18px;
+    color: #4a4b4f;
+    text-decoration: none;
+  }
+
+  .art-card--link { background: #fffdf9; }
+  .art-card--note { background: #f7f4ef; }
+
+  .art-card__kind {
+    display: block;
+    margin-bottom: 26px;
+    color: #9a938f;
+    font-size: 11px;
+    text-transform: lowercase;
+  }
+
+  .art-card__link-title,
+  .art-card__note-text {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  .art-card__link-source {
+    display: block;
+    margin-top: 10px;
+    color: #8f6a60;
+    font-size: 12px;
+  }
+
+  .art-card__note-text { font-weight: 400; }
+
+  .art-card__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .art-card__note {
+    padding: 12px 13px 15px;
+    color: #625d5a;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .art-card__title {
+    display: block;
+    color: #4a4b4f;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .art-card__meta {
+    display: block;
+    margin-top: 3px;
+    color: #9a938f;
+    font-size: 11px;
+  }
+
+  .art-empty {
+    padding: 44px 18px;
+    border: 1px dashed #d8d1cc;
+    color: #79726d;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .art-back {
+    display: inline-block;
+    margin: 38px 12px 0;
+    font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    .art-page { padding: 0 0 40px; }
+    .art-page__header { display: block; margin-bottom: 24px; }
+    .art-page__intro { margin-top: 8px; text-align: left; }
+    .art-wall { display: flex; width: auto; gap: 10px; }
+    .art-column { display: flex; float: none; flex: 1 1 0; flex-direction: column; gap: 10px; margin-right: 0; min-width: 0; width: auto; }
+    .art-card { margin: 0 0 10px; }
+    .art-card__note { padding: 9px 10px 11px; }
+  }
+</style>
+
+<section class="art-page">
+  <nav class="art-page__nav" aria-label="Site navigation">
+    <a class="art-page__home" href="{{ "/" | relURL }}">Midhun Chandran</a>
+    <span class="art-page__section-label">Garden 🪴</span>
+  </nav>
+
+  <p class="art-page__line">{{ .Description }}</p>
+
+  {{ with .Params.items }}
+  <div class="art-wall">
+    {{ range . }}
+      {{ $kind := .kind | default "image" }}
+      {{ if eq $kind "link" }}
+        <a class="art-card art-card--link" href="{{ .url }}" target="_blank" rel="noopener">
+          <span class="art-card__kind">{{ .source | default "link" }} ↗</span>
+          <span class="art-card__link-title">{{ .title }}</span>
+          {{ with .note }}<span class="art-card__link-source">{{ . }}</span>{{ end }}
+        </a>
+      {{ else if eq $kind "note" }}
+        <article class="art-card art-card--note">
+          <span class="art-card__kind">note</span>
+          <span class="art-card__note-text">{{ .text }}</span>
+        </article>
+      {{ else }}
+        <figure class="art-card">
+          <img class="art-card__image" src="{{ .image | relURL }}" alt="{{ .alt | default .title }}" loading="lazy">
+          {{ if or .title .note .date }}
+          <figcaption class="art-card__note">
+            {{ with .title }}<span class="art-card__title">{{ . }}</span>{{ end }}
+            {{ with .note }}{{ . }}{{ end }}
+            {{ with .date }}<span class="art-card__meta">{{ . }}</span>{{ end }}
+          </figcaption>
+          {{ end }}
+        </figure>
+      {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <script>
+    (function () {
+      var wall = document.querySelector('.art-wall');
+      if (!wall) return;
+
+      // Preserve newest-first order across the top, then stack each later item
+      // beneath its column. This avoids row-height gaps while keeping sets legible.
+      var cards = [];
+      for (var i = 0; i < wall.children.length; i += 1) cards.push(wall.children[i]);
+
+      function columnCount() {
+        var viewportWidth = Math.max(window.innerWidth || 0, document.documentElement.clientWidth || 0, document.body.clientWidth || 0, window.screen.width || 0);
+        return viewportWidth <= 600 ? 2 : 3;
+      }
+
+      function layOutWall() {
+        var count = columnCount();
+        var columns = [];
+        var column;
+
+        while (wall.firstChild) wall.removeChild(wall.firstChild);
+        for (var c = 0; c < count; c += 1) {
+          column = document.createElement('div');
+          column.className = 'art-column';
+          columns.push(column);
+          wall.appendChild(column);
+        }
+        for (var cardIndex = 0; cardIndex < cards.length; cardIndex += 1) {
+          columns[cardIndex % count].appendChild(cards[cardIndex]);
+        }
+      }
+
+      layOutWall();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(layOutWall, 150);
+      });
+    }());
+  </script>
+</section>
+{{ end }}
