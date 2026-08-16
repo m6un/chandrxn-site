@@ -11,6 +11,9 @@ wideLayout: true
 #   note: "A small reason it is here."
 items:
   # New submissions go at the top: the Garden is newest-first.
+  - kind: image
+    image: "/garden/cat-on-bed-flash.jpg"
+    alt: "Black-and-white cat sitting on a rumpled dark bed with eyes reflecting camera flash"
   # This three-piece set keeps the order it was shared in.
   - kind: image
     image: "/garden/yellow-portrait.jpg"
