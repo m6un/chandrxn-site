@@ -12,6 +12,9 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/warm-workspace-wall.jpg"
+    alt: "Warmly lit workspace with a monitor, laptop, desk lamp, keyboard, notebook, and a pegboard wall of personal objects"
+  - kind: image
     image: "/garden/cat-on-bed-flash.jpg"
     alt: "Black-and-white cat sitting on a rumpled dark bed with eyes reflecting camera flash"
   # This three-piece set keeps the order it was shared in.
