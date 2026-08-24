@@ -11,6 +11,19 @@ wideLayout: true
 #   note: "A small reason it is here."
 items:
   # New submissions go at the top: the Garden is newest-first.
+  # This four-piece set keeps the order it was shared in.
+  - kind: image
+    image: "/garden/time-for-new-beginnings-email.jpg"
+    alt: "Phone screenshot of an email titled Time for new beginnings"
+  - kind: image
+    image: "/garden/home-portrait.jpg"
+    alt: "Portrait of a woman seated indoors beneath a decorative balcony railing"
+  - kind: image
+    image: "/garden/cafe-peace-sign.jpg"
+    alt: "Woman making a peace sign at a cafe table with two hot drinks and desserts"
+  - kind: image
+    image: "/garden/what-if-you-fly.jpg"
+    alt: "Framed print reading What if I fall? Oh, but my darling, what if you fly?"
   - kind: image
     image: "/garden/warm-workspace-wall.jpg"
     alt: "Warmly lit workspace with a monitor, laptop, desk lamp, keyboard, notebook, and a pegboard wall of personal objects"
