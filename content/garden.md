@@ -12,6 +12,9 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/nonlinear-people-exponential-outcomes.jpg"
+    alt: "Screenshot of an X post by Prashant Sharma reading non linear people create exponential outcomes"
+  - kind: image
     image: "/garden/kierkegaard-possibility.jpg"
     alt: "Screenshot of a Kierkegaard quote about the passion of the possible"
   # This four-piece set keeps the order it was shared in.
