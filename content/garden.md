@@ -12,6 +12,9 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/morpheus-system-dependence.jpg"
+    alt: "Morpheus from The Matrix beside a quote about people being dependent on the system and fighting to protect it"
+  - kind: image
     image: "/garden/nonlinear-people-exponential-outcomes.jpg"
     alt: "Screenshot of an X post by Prashant Sharma reading non linear people create exponential outcomes"
   - kind: image
