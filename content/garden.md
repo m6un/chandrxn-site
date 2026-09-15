@@ -12,6 +12,10 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/trust-that-leap.jpg"
+    alt: "Framed black-and-white photograph of a person diving backward into a lake, mounted on a brick wall"
+    note: "Sometimes you got to trust that leap"
+  - kind: image
     image: "/garden/morpheus-system-dependence.jpg"
     alt: "Morpheus from The Matrix beside a quote about people being dependent on the system and fighting to protect it"
   - kind: image
