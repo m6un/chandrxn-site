@@ -12,6 +12,12 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/hussein-nasser-build-for-the-present.jpg"
+    alt: "Screenshot of a post by Hussein Nasser about building for the present and enjoying the creation"
+  - kind: image
+    image: "/garden/mehdi-djabri-frontier.jpg"
+    alt: "Screenshot of a post by Mehdi Djabri reading try very hard things, stay at the frontier"
+  - kind: image
     image: "/garden/trust-that-leap.jpg"
     alt: "Framed black-and-white photograph of a person diving backward into a lake, mounted on a brick wall"
     note: "Sometimes you got to trust that leap"
