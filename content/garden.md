@@ -12,6 +12,9 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/to-be-ballin-all-in.jpg"
+    alt: "Meme of a monkey in sunglasses and a sweatshirt, with text reading: to be ballin, you gotta b-all-in"
+  - kind: image
     image: "/garden/hussein-nasser-build-for-the-present.jpg"
     alt: "Screenshot of a post by Hussein Nasser about building for the present and enjoying the creation"
   - kind: image
