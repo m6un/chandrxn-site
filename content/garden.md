@@ -12,6 +12,9 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/aiden-bai-litmus-test.jpg"
+    alt: "Screenshot of an X post by Aiden Bai reading: having deep knowledge or ability to explain niche complex systems is still a good litmus test for smart people"
+  - kind: image
     image: "/garden/to-be-ballin-all-in.jpg"
     alt: "Meme of a monkey in sunglasses and a sweatshirt, with text reading: to be ballin, you gotta b-all-in"
   - kind: image
