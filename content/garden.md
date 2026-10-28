@@ -12,6 +12,9 @@ wideLayout: true
 items:
   # New submissions go at the top: the Garden is newest-first.
   - kind: image
+    image: "/garden/courage-shorter-supply-than-genius.jpg"
+    alt: "Screenshot of an X post by Thariq reading: courage in shorter supply than genius"
+  - kind: image
     image: "/garden/sabbatical-guardrails.png"
     alt: "Screenshot of a reflection about approaching a sabbatical as a stochastic process and setting guardrails that expand the luck surface area"
   - kind: image
