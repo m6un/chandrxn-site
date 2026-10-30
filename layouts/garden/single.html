@@ -102,6 +102,27 @@
   .art-card--link { background: #fffdf9; }
   .art-card--note { background: #f7f4ef; }
 
+  .art-card--x {
+    box-sizing: border-box;
+    min-height: 210px;
+    padding: 15px;
+    color: #1f2937;
+    background: #fff;
+    text-decoration: none;
+  }
+
+  .x-card__header { display: flex; align-items: center; gap: 9px; }
+  .x-card__avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; background: #edf0f2; }
+  .x-card__identity { min-width: 0; line-height: 1.25; }
+  .x-card__name { display: block; overflow: hidden; font-size: 13px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+  .x-card__handle { display: block; color: #697785; font-size: 12px; }
+  .x-card__mark { margin-left: auto; color: #111; font-size: 17px; font-weight: 700; }
+  .x-card__text { margin: 14px 0 13px; font-size: 14px; line-height: 1.48; white-space: pre-wrap; }
+  .x-card__media { display: block; width: 100%; margin: 0 0 12px; border-radius: 8px; }
+  .x-card__footer { display: flex; align-items: center; color: #7b8792; font-size: 11px; }
+  .x-card__outbound { margin-left: auto; }
+  .x-card--loading .x-card__text { color: #7b8792; }
+
   .art-card__kind {
     display: block;
     margin-bottom: 26px;
@@ -203,6 +224,12 @@
           <span class="art-card__kind">note</span>
           <span class="art-card__note-text">{{ .text }}</span>
         </article>
+      {{ else if eq $kind "x" }}
+        <a class="art-card art-card--x art-card--loading" href="{{ .url }}" data-x-url="{{ .url }}" target="_blank" rel="noopener">
+          <div class="x-card__header"><span class="x-card__mark">𝕏</span></div>
+          <p class="x-card__text">Loading X post…</p>
+          <div class="x-card__footer"><span>View on X</span><span>↗</span></div>
+        </a>
       {{ else }}
         <figure class="art-card">
           <img class="art-card__image" src="{{ .image | relURL }}" alt="{{ .alt | default .title }}" loading="lazy">
@@ -224,10 +251,75 @@
       var wall = document.querySelector('.art-wall');
       if (!wall) return;
 
+      function xPostId(url) {
+        var match = url && url.match(/\/status\/(\d+)/);
+        return match ? match[1] : null;
+      }
+
+      function node(tag, className, text) {
+        var element = document.createElement(tag);
+        if (className) element.className = className;
+        if (text !== undefined) element.textContent = text;
+        return element;
+      }
+
+      function hydrateXCard(card) {
+        var id = xPostId(card.dataset.xUrl);
+        if (!id) return;
+        fetch('https://api.fxtwitter.com/status/' + id)
+          .then(function (response) {
+            if (!response.ok) throw new Error('X preview unavailable');
+            return response.json();
+          })
+          .then(function (payload) {
+            var tweet = payload && payload.tweet;
+            var author = tweet && tweet.author;
+            if (!tweet || !author) throw new Error('Incomplete X preview');
+
+            card.replaceChildren();
+            var header = node('div', 'x-card__header');
+            if (author.avatar_url) {
+              var avatar = node('img', 'x-card__avatar');
+              avatar.src = author.avatar_url;
+              avatar.alt = '';
+              avatar.referrerPolicy = 'no-referrer';
+              header.appendChild(avatar);
+            }
+            var identity = node('span', 'x-card__identity');
+            identity.appendChild(node('span', 'x-card__name', author.name || 'X user'));
+            identity.appendChild(node('span', 'x-card__handle', '@' + (author.screen_name || 'x')));
+            header.appendChild(identity);
+            header.appendChild(node('span', 'x-card__mark', '𝕏'));
+            card.appendChild(header);
+            card.appendChild(node('p', 'x-card__text', tweet.text || 'View post on X'));
+            var photos = tweet.media && tweet.media.photos;
+            if (Array.isArray(photos) && photos.length && photos[0].url) {
+              var media = node('img', 'x-card__media');
+              media.src = photos[0].url;
+              media.alt = '';
+              media.loading = 'lazy';
+              media.referrerPolicy = 'no-referrer';
+              card.appendChild(media);
+            }
+
+            var footer = node('div', 'x-card__footer');
+            footer.appendChild(node('span', 'x-card__outbound', '↗'));
+            card.appendChild(footer);
+            card.classList.remove('art-card--loading');
+            layOutWall();
+          })
+          .catch(function () {
+            card.classList.remove('art-card--loading');
+            var text = card.querySelector('.x-card__text');
+            if (text) text.textContent = 'View this post on X';
+          });
+      }
+
       // Preserve newest-first order across the top, then stack each later item
       // beneath its column. This avoids row-height gaps while keeping sets legible.
       var cards = [];
       for (var i = 0; i < wall.children.length; i += 1) cards.push(wall.children[i]);
+      cards.filter(function (card) { return card.matches('.art-card--x'); }).forEach(hydrateXCard);
 
       function columnCount() {
         var viewportWidth = Math.max(window.innerWidth || 0, document.documentElement.clientWidth || 0, document.body.clientWidth || 0, window.screen.width || 0);

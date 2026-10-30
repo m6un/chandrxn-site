@@ -11,6 +11,10 @@ wideLayout: true
 #   note: "A small reason it is here."
 items:
   # New submissions go at the top: the Garden is newest-first.
+  - kind: x
+    url: "https://x.com/saranormous/status/2116061787548422183"
+  - kind: x
+    url: "https://x.com/justinskycak/status/2115719787711959274"
   - kind: image
     image: "/garden/courage-shorter-supply-than-genius.jpg"
     alt: "Screenshot of an X post by Thariq reading: courage in shorter supply than genius"
