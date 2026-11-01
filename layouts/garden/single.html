@@ -93,14 +93,12 @@
   .art-card--link,
   .art-card--note {
     box-sizing: border-box;
-    min-height: 160px;
-    padding: 18px;
     color: #4a4b4f;
     text-decoration: none;
   }
 
-  .art-card--link { background: #fffdf9; }
-  .art-card--note { background: #f7f4ef; }
+  .art-card--link { padding: 14px; background: #fffdf9; }
+  .art-card--note { min-height: 160px; padding: 18px; background: #f7f4ef; }
 
   .art-card--x {
     box-sizing: border-box;
@@ -123,11 +121,20 @@
   .x-card--loading .x-card__text { color: #7b8792; }
 
   .art-card__kind {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     margin-bottom: 26px;
     color: #9a938f;
     font-size: 11px;
     text-transform: lowercase;
+  }
+
+  .art-card__favicon {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    object-fit: contain;
   }
 
   .art-card__link-title,
@@ -214,7 +221,7 @@
       {{ $kind := .kind | default "image" }}
       {{ if eq $kind "link" }}
         <a class="art-card art-card--link" href="{{ .url }}" target="_blank" rel="noopener">
-          <span class="art-card__kind">{{ .source | default "link" }} ↗</span>
+          <span class="art-card__kind">{{ with .favicon }}<img class="art-card__favicon" src="{{ . }}" alt="" loading="lazy">{{ end }}{{ .source | default "link" }} ↗</span>
           <span class="art-card__link-title">{{ .title }}</span>
           {{ with .note }}<span class="art-card__link-source">{{ . }}</span>{{ end }}
         </a>

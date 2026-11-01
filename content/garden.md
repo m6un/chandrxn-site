@@ -11,6 +11,11 @@ wideLayout: true
 #   note: "A small reason it is here."
 items:
   # New submissions go at the top: the Garden is newest-first.
+  - kind: link
+    title: "Exit from Paradise"
+    url: "https://sabbaticalhandbook.svs.io/read/preparing-to-exit"
+    source: "The Sabbatical Handbook"
+    favicon: "/garden/sabbatical-handbook-favicon.png"
   - kind: x
     url: "https://x.com/saranormous/status/2116061787548422183"
   - kind: x
