@@ -10,6 +10,12 @@ wideLayout: true
 #   url: "https://example.com"
 #   note: "A small reason it is here."
 items:
+  # Pinned entries stay above the newest-first Garden feed.
+  - kind: link
+    title: "keep going"
+    url: "https://www.jackfriks.com/keep-going"
+    source: "jack friks"
+    pinned: true
   # New submissions go at the top: the Garden is newest-first.
   - kind: link
     title: "Exit from Paradise"

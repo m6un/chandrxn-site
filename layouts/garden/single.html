@@ -217,7 +217,7 @@
 
   {{ with .Params.items }}
   <div class="art-wall">
-    {{ range . }}
+    {{ range sort . "pinned" "desc" }}
       {{ $kind := .kind | default "image" }}
       {{ if eq $kind "link" }}
         <a class="art-card art-card--link" href="{{ .url }}" target="_blank" rel="noopener">
