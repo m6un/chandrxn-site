@@ -17,6 +17,8 @@ items:
     source: "jack friks"
     pinned: true
   # New submissions go at the top: the Garden is newest-first.
+  - kind: x
+    url: "https://x.com/sambhav_gandhi/status/2117978877415010318?a=eoxxyUdZKujsU8djHEM&s=46"
   - kind: link
     title: "Exit from Paradise"
     url: "https://sabbaticalhandbook.svs.io/read/preparing-to-exit"
