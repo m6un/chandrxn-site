@@ -17,6 +17,9 @@ items:
     source: "jack friks"
     pinned: true
   # New submissions go at the top: the Garden is newest-first.
+  - kind: image
+    image: "/garden/engineering-advice-email.jpg"
+    alt: "Screenshot of a Gmail email listing advice for becoming a strong infrastructure engineer, including going deep on hard problems, building from scratch, debugging, writing clearly, developing taste, and making work legible"
   - kind: x
     url: "https://x.com/sambhav_gandhi/status/2117978877415010318?a=eoxxyUdZKujsU8djHEM&s=46"
   - kind: link
